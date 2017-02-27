@@ -10,3 +10,4 @@ string GenerateMessage(const string& greeting, const string& target) {
   return s.str();
 }
 
+
