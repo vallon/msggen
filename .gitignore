@@ -1,0 +1,6 @@
+/CMakeCache.txt
+/CMakeFiles
+*~
+/lib*.a
+cmake_install.cmake
+Makefile
