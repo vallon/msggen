@@ -1,24 +1,26 @@
+/* Jenkinsfile */
 
-stage('Prep') {
-    echo 'Prep'
-    node {
-    	deleteDir()
-        checkout scm
+void clean(Closure fn) {
+    deleteDir();
+    try {
+        fn();
+    } finally {
+        deleteDir();
     }
 }
 
-stage('Build') {
-    echo 'Build'
-    node {
-        sh 'cmake .'
-        sh 'make'
+node('osprey || toucan') {
+    stage('setup') {
+        checkout(scm);
     }
-}
-
-stage('Test') {
-    echo 'Test'
-    node {
-        sh 'echo test'
+    stage('configure') {
+        sh 'cmake .';
+    }
+    stage('build') {
+        sh 'make';
+    }
+    stage('test') {
+        sh 'true';
     }
 }
 
